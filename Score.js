@@ -1,15 +1,15 @@
 var score = 0,
     scoreTot = 0,
     missingHero = 152,
+    totalHeroes = 152,
     userFails = 0;
 
 var hero_movie_left = {};
 
-
 d3.select('.menu').append("div").attr("class","score").text("SCORE: " + scoreTot)
 d3.select('.menu').append("div").attr("class","missingHero").text("Missing Heroes: " + missingHero)
-d3.select('.menu').append("div").attr("class","userFails").text("Fails: " + userFails)
 d3.select('.menu').append("div").attr("class","movieCompleted").text("Movies Completed: " + 0 + " / 24")
+d3.select('.menu').append("div").attr("class","userFails").text("Fails: " + userFails)
 
 function correctHero(movieID, heroID){
     if(score == 0){
@@ -68,6 +68,8 @@ function updateMovieCompleted(movieID){
 
     d3.select('.movieCompleted').text("Movies Completed: " + movieC + " / 24")
 }
+
+let chart = radialProgress('.widget')
 
 function radialProgress(selector) {
   const parent = d3.select(selector)
@@ -147,24 +149,6 @@ function radialProgress(selector) {
   }
 }
 
-let chart = radialProgress('.widget')
-let indovinati=0
-let totali=3
-let totalHeroes = 152
-let missingHeroes = d3.selectAll(".missHero")._groups[0].length
-
 function updateScore(){
-  console.log(missingHero)
   chart.update(((totalHeroes-missingHero)/totalHeroes)*100)
 }
-
-// function updateBar(){
-//   if (indovinati>=totali) { indovinati=totali }
-//   else { indovinati++ }
-//   chart.update((indovinati/totali)*100)
-// }
-//
-// function resetBar(){
-//   indovinati=0
-//   chart.update(indovinati)
-// }
