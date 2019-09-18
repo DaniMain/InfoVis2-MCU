@@ -1,0 +1,163 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>Estrarre dati da un file XML con JavaScript</title>
+    <style type="text/css">
+    h1 { color: #800000; font-size: 20px; font-family: Verdana; }
+    td { background-color: #FFFFFF; font-size: 12px; font-family: Verdana; }
+    </style>
+    </head>
+
+    <body>
+    <!--<xml id="Heroes" src="Marvel - GraphML.xml"></xml>
+    <xml ID="" SRC="Artist.xml"></xml>-->
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <div id="target"></div>
+        
+    <!--<script>
+        var dictHeroes = {};
+        var dictMovies = {};
+        var dictEdge = {};
+        
+        d3.xml("Marvel - GraphML.xml", "application/xml", function(xml) {
+            var Root = xml.childNodes[0];
+            var Elements = Root.children[2];
+
+            var target = d3.select('#target');
+            var i;
+            
+            target.append('h1').text('Heroes').attr('align', 'center');
+            // inizializzo dizionario personaggi
+            for (i = 0; i < Elements.children.length; i++){
+                var Elem = Elements.children[i];
+                if (Elem.id == "m0")
+                    break;
+                // Access each of the data values.
+                var Name = Elem.children;
+                // Write the data to the page.
+                dictHeroes[Elem.id] = Name[1].textContent.toString();
+                //target.append('h3').attr('id', Elem.id).text(Name[1].textContent.toString());
+                
+            };
+
+            target.append('h1').text('Movies').attr('align', 'center');
+            // inizializzo dizionario movie
+            for (i = 0; i < Elements.children.length; i++){
+                var Elem = Elements.children[i];
+                if (Elem.id == "")
+                    break;
+                if (Elem.id.substring(0,1) == "m"){
+                    // Access each of the data values.
+                    var Name = Elem.children;
+                    // Write the data to the page.
+                    dictMovies[Elem.id] = Name[1].textContent.toString();
+                    //target.append('h3').attr('id', Elem.id).text(Name[1].textContent.toString());
+                }
+                
+            };
+
+            //caricamento link character-movie
+            target.append('h1').text('Edge').attr('align', 'center');
+
+            var edges = Elements.getElementsByTagName("edge");
+            Object.keys(edges).forEach(function(element, index, array){
+                var array = dictEdge[edges[element].attributes[0].nodeValue];
+                if (array == undefined){
+                    dictEdge[edges[element].attributes[0].nodeValue] = [edges[element].attributes[1].nodeValue]
+                }else{
+                    array.push(edges[element].attributes[1].nodeValue)
+                }
+            });
+            //var edge = Customers.getElementsByTagName("edge")[0];
+            //console.log(edge.attributes[0].nodeValue, edge.attributes[1].nodeValue);
+            console.log("Finito!");
+            
+            var cap = dictHeroes["h3"];
+            d3.select("#target").append('img').attr('src', 'bozza/'+cap+'.JPG').attr("width","60").attr("height","60");
+
+            Object.keys(dictEdge).forEach(function(key,i){
+                console.log(dictHeroes[key] + ", Movies: " +dictEdge[key]);
+            });
+
+        });
+    </script>-->
+    
+    <script> //prima versione di lettura senza d3
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction(this);
+            }
+        };
+        xhttp.open("GET", "Marvel - GraphML.xml", true);
+        xhttp.send();
+
+        var dictHeroes = {};
+        var dictMovies = {};
+        var dictEdge = {};
+        
+        function myFunction(xml) {
+            var xmlDoc = xml.responseXML;
+            var Root = xmlDoc.childNodes[0];
+            var Elements = Root.children[2];
+
+            var target = d3.select('#target');
+            var i;
+            
+            target.append('h1').text('Heroes').attr('align', 'center');
+            // inizializzo dizionario personaggi
+            for (i = 0; i < Elements.children.length; i++){
+                var Elem = Elements.children[i];
+                if (Elem.id == "m0")
+                    break;
+                // Access each of the data values.
+                var Name = Elem.children;
+                // Write the data to the page.
+                dictHeroes[Elem.id] = Name[1].textContent.toString();
+                //target.append('h3').attr('id', Elem.id).text(Name[1].textContent.toString());
+                
+            };
+
+            target.append('h1').text('Movies').attr('align', 'center');
+            // inizializzo dizionario movie
+            for (i = 0; i < Elements.children.length; i++){
+                var Elem = Elements.children[i];
+                if (Elem.id == "")
+                    break;
+                if (Elem.id.substring(0,1) == "m"){
+                    // Access each of the data values.
+                    var Name = Elem.children;
+                    // Write the data to the page.
+                    dictMovies[Elem.id] = Name[1].textContent.toString();
+                    //target.append('h3').attr('id', Elem.id).text(Name[1].textContent.toString());
+                }
+                
+            };
+
+            //caricamento link character-movie
+            target.append('h1').text('Edge').attr('align', 'center');
+
+            var edges = Elements.getElementsByTagName("edge");
+            Object.keys(edges).forEach(function(element, index, array){
+                var array = dictEdge[edges[element].attributes[0].nodeValue];
+                if (array == undefined){
+                    dictEdge[edges[element].attributes[0].nodeValue] = [edges[element].attributes[1].nodeValue]
+                }else{
+                    array.push(edges[element].attributes[1].nodeValue)
+                }
+            });
+            //var edge = Customers.getElementsByTagName("edge")[0];
+            //console.log(edge.attributes[0].nodeValue, edge.attributes[1].nodeValue);
+            console.log("Finito!");
+            
+            var cap = dictHeroes["h3"];
+            d3.select("#target").append('img').attr('src', 'bozza/'+cap+'.JPG').attr("width","60").attr("height","60");
+
+            Object.keys(dictEdge).forEach(function(key,i){
+                console.log(dictHeroes[key] + ", Movies: " +dictEdge[key]);
+            });
+
+        }
+    </script>
+    </body>
+</html>

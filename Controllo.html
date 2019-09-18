@@ -1,0 +1,72 @@
+<html>
+    <meta charset="utf-8">
+    <style type="text/css">
+        div { margin-left:5px; }
+
+        body { background-image: url("Serio/milky-way-small2.jpg"); background-position: 4px;}
+        
+        div.menu { margin-top: 7px; width:1400px; height:100px; background-color:#00ff2a9f; }
+    
+        h1 { color: red; text-align: center;}
+
+        h3 { color: white; text-align: center; }
+
+        text { fill: white; }
+        
+        rect { fill: transparent; }
+        rect.sectionHero { fill:black; stroke: red; stroke-width: 3px;}
+
+        ellipse { fill: black; stroke: red; }
+
+        div.target { border-style:solid; border-width: 3px; border-color: red; }
+        
+        div.heroes { border-style:solid; border-width: 3px; border-color: red;}
+        
+        div.tooltip {	
+            position: absolute;			
+            text-align: center;			
+            width: 100px;					
+            height: 28px;					
+            padding: 2px;				
+            font: 12px sans-serif;		
+            background: lightsteelblue;	
+            border: 0px;		
+            border-radius: 8px;			
+            pointer-events: none;			
+        }
+    </style>
+    <body>
+        <script src="http://d3js.org/d3.v4.min.js"></script>
+        
+        <h1> MARVEL CINEMATIC UNIVERSE </h1>
+        
+        <div class="heroes" style="overflow:auto;padding-right:2px;float:left;width:120px;height:595px;">
+            <h3>Hero List</h3>
+        </div>
+
+        <div class="target" style="float:left;width:1260px;height:595px;"> <!-- rimetti width a 1260, oppure trovare il modo di occupare lo schermo senza andare a capo -->
+            <svg id="world" width="1260" height="595">
+                
+            </svg>
+        </div>
+        <div style="clear:both;"></div>
+        
+        <div class="menu"> <strong>Main</strong> 
+            <br><br>
+            <div class="playlist" style ="float:right;background-color:black">
+                <audio id="audio" src="The Avengers - Main Theme Extended.mp3" controls autoplay loop>
+                </audio>
+                <br>
+                <button type="button" onclick = "play('The Avengers - Main Theme Extended.mp3')">
+                    Song 1
+                </button>
+                <button type="button" onclick = "play('THE AVENGERS_Epic Medley Orchestral Cover.mp3')">
+                    Song 2
+                </button>
+            </div>
+        </div>
+
+        <script src="LoadHeroes.js"></script>
+        <script src="Universe.js"></script>
+    </body>
+</html>

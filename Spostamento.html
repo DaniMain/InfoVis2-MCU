@@ -1,0 +1,99 @@
+<html>
+    <meta charset="utf-8">
+    <style type="text/css">
+        div.tooltip {
+            position: absolute;
+            text-align: center;
+            width: 145px;
+            height: 35px;
+            padding: 2px;
+            font: 15px sans-serif;
+            background: lightsteelblue;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        div.footer { margin-top: 7px; width:1400px; height:150px; background-color:#00ff2a9f; }
+
+        .score {font-size: 20px; font-weight: bold;}
+
+        rect { fill: black; stroke: red; stroke-width: 3px;}
+        ellipse { fill: transparent; stroke: black; }
+        text { fill: black }
+        div { margin-left: 5px;}
+
+        table {
+          width: 300;
+        }
+
+    </style>
+    <link rel="stylesheet", type="text/css", href="progress-bar.css"></style>
+
+    <body>
+        <script src="http://d3js.org/d3.v4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+
+
+        <!--<audio controls autoplay loop>
+            <source src="song.mp3" type="audio/mp3">
+            <source src="song2.mp3" type="audio/mp3">
+        </audio>-->
+
+
+        <!--<svg id = "all" width = "1400" height = "700">
+                <foreignobject class="node" x="10" y="20" width="120" height="595">
+                        <div class="heroes" style="overflow:auto;padding-right:2px;float:left;width:120px;height:595px;background-color:#ff00ff;">
+                        </div>
+                </foreignobject>
+                <svg id="world" width = "1280" height = "595" transform = "translate(140,20)">
+                    <foreignobject class="node" x="0" y="0" width="1280" height="595">
+                            <div class="target" style="float:left;width:1280px;height:595px;background-color: burlywood"></div>
+                            <div class="sectionHero" style="z-index:-1;width:90px;height:90px; background-color:cornflowerblue; stroke:black;"></div>
+                    </foreignobject>
+                </svg>
+        </svg>-->
+
+        <div class="heroes" style="overflow:auto;padding-right:2px;float:left;width:120px;height:595px;background-color:#ff00ff;">
+        </div>
+
+        <div class="target" style="overflow:auto;float:left;width:1200px;height:595px;background-color: burlywood">
+            <svg id="world" width="2000" height="4800">
+                <g class="view"></g>
+            </svg>
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <div class="footer"> <strong>STATUS GAME</strong>
+
+          <table>
+          	<tr>
+              <td><div class='widget'></div></td>
+              <td><div class="menu"></div></td>
+            </tr>
+          </table>
+
+          <button onclick="updateBar()">update bar</button>
+          <button onclick="resetBar()">reset bar</button>
+        </div>
+
+        <div class="playlist" style ="float:right;background-color:black">
+            <audio id="audio" src="The Avengers - Main Theme Extended.mp3" controls loop>
+            </audio>
+            <br>
+            <button type="button" onclick = "play('The Avengers - Main Theme Extended.mp3')">
+                Song 1
+            </button>
+            <button type="button" onclick = "play('THE AVENGERS_Epic Medley Orchestral Cover.mp3')">
+                Song 2
+            </button>
+        </div>
+
+        <script src="LoadHeroes.js"></script>
+        <script src="prova.js"></script>
+        <script src="Score.js"></script>
+        <script src="detectInOut.js"></script>
+
+    </body>
+</html>
