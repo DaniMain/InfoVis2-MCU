@@ -29,17 +29,18 @@ function cheatHero(movieID, heroID){
     HeroRevealed(scoreTot, movieID, heroID);
 }
 
-function wrongHero(){
-    score = 0;
-    userFails += 1;
-    d3.select('.userFails').text("Fails: " + userFails);
-}
-
 function HeroRevealed(score,movieID,heroID){
     d3.select('.score').text("Score: " + score);
     calculateMissingHero()
     updateMovieCompleted(movieID)
     updateHeroMovieLeft(heroID, movieID)
+    updateScore()
+}
+
+function wrongHero(){
+    score = 0;
+    userFails += 1;
+    d3.select('.userFails').text("Fails: " + userFails);
 }
 
 function calculateMissingHero(){
@@ -140,20 +141,30 @@ function radialProgress(selector) {
         }
       })
       value = progressPercent
+
     }
+
   }
 }
 
 let chart = radialProgress('.widget')
 let indovinati=0
 let totali=3
-function updateBar(){
-  if (indovinati>=totali) { indovinati=totali }
-  else { indovinati++ }
-  chart.update((indovinati/totali)*100)
+let totalHeroes = 152
+let missingHeroes = d3.selectAll(".missHero")._groups[0].length
+
+function updateScore(){
+  console.log(missingHero)
+  chart.update(((totalHeroes-missingHero)/totalHeroes)*100)
 }
 
-function resetBar(){
-  indovinati=0
-  chart.update(indovinati)
-}
+// function updateBar(){
+//   if (indovinati>=totali) { indovinati=totali }
+//   else { indovinati++ }
+//   chart.update((indovinati/totali)*100)
+// }
+//
+// function resetBar(){
+//   indovinati=0
+//   chart.update(indovinati)
+// }
