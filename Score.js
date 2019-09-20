@@ -1,15 +1,15 @@
 var score = 0,
     scoreTot = 0,
     missingHero = 152,
-    totalHeroes = 152,
     userFails = 0;
 
 var hero_movie_left = {};
 
-d3.select('.menu').append("div").attr("class","score").text("SCORE: " + scoreTot)
-d3.select('.menu').append("div").attr("class","missingHero").text("Missing Heroes: " + missingHero)
-d3.select('.menu').append("div").attr("class","movieCompleted").text("Movies Completed: " + 0 + " / 24")
-d3.select('.menu').append("div").attr("class","userFails").text("Fails: " + userFails)
+
+d3.select('.menu1').append("div").attr("class","score").text("SCORE: " + scoreTot)
+d3.select('.menu2').append("div").attr("class","missingHero").text("Missing Heroes: " + missingHero)
+d3.select('.menu2').append("div").attr("class","movieCompleted").text("Movies Completed: " + 0 + " / 24")
+d3.select('.menu2').append("div").attr("class","userFails").text("Fails: " + userFails)
 
 function correctHero(movieID, heroID){
     if(score == 0){
@@ -29,18 +29,18 @@ function cheatHero(movieID, heroID){
     HeroRevealed(scoreTot, movieID, heroID);
 }
 
-function HeroRevealed(score,movieID,heroID){
-    d3.select('.score').text("Score: " + score);
-    calculateMissingHero()
-    updateMovieCompleted(movieID)
-    updateHeroMovieLeft(heroID, movieID)
-    updateScore()
-}
-
 function wrongHero(){
     score = 0;
     userFails += 1;
     d3.select('.userFails').text("Fails: " + userFails);
+}
+
+function HeroRevealed(score,movieID,heroID){
+    d3.select('.score').text("SCORE: " + score);
+    calculateMissingHero()
+    updateMovieCompleted(movieID)
+    updateHeroMovieLeft(heroID, movieID)
+    updateScore()
 }
 
 function calculateMissingHero(){
@@ -65,11 +65,8 @@ function updateMovieCompleted(movieID){
             movieC+=1;
         }
     });
-
     d3.select('.movieCompleted').text("Movies Completed: " + movieC + " / 24")
 }
-
-let chart = radialProgress('.widget')
 
 function radialProgress(selector) {
   const parent = d3.select(selector)
@@ -113,7 +110,7 @@ function radialProgress(selector) {
   let percentLabel = svg.append("text")
     .attr('class', 'progress-label')
     .attr('transform', `translate(${size.width/2},${size.height/2})`)
-    .text('0')
+    .text('0%')
 
   return {
     update: function(progressPercent) {
@@ -139,7 +136,7 @@ function radialProgress(selector) {
       })
       percentLabel.transition().duration(transitionDuration).tween('bla', function() {
         return function(t) {
-          percentLabel.text(Math.round(startValue + (progressPercent - startValue) * t));
+          percentLabel.text(Math.round(startValue + (progressPercent - startValue) * t) + "%");
         }
       })
       value = progressPercent
@@ -148,6 +145,9 @@ function radialProgress(selector) {
 
   }
 }
+
+let chart = radialProgress('.widget')
+let totalHeroes = 152
 
 function updateScore(){
   chart.update(((totalHeroes-missingHero)/totalHeroes)*100)

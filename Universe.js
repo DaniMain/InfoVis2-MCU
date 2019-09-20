@@ -48,13 +48,13 @@ d3.select("#world").append("g").attr("id","secHero").append("rect").attr("class"
     .attr("x","10").attr("y","20").attr("width","90").attr("height","90")
 
 /* =====================  Creazione cerchi per gli eroi =========================== */
-var drag =  d3.drag()
-    .on("start", dragstarted)
-    .on("drag", dragged)
-    .on("end", dragended);
+// var drag =  d3.drag()
+//     .on("start", dragstarted)
+//     .on("drag", dragged)
+//     .on("end", dragended);
 
 var div = d3.select("body").append("div")
-                .attr("class", "tooltip")				
+                .attr("class", "tooltip")
                 .style("opacity", 0);
 
 d3.select("div.heroes").append("svg").attr("id","heroList").attr("width","120").attr("height","2600")
@@ -63,106 +63,114 @@ function zoomed() {
     //view.attr("transform", "translate(" + d3.event.translate + ") scale(" + d3.event.scale + ")");
     view.attr("transform", d3.event.transform);
     //console.log(d3.event.transform);
-    let t = d3.event.transform;
-    
-    //console.log("Prima: ", scaleX(x), scaleY(y))
-    scaleX.domain(t.rescaleX(scaleX2).domain())
-    scaleY.domain(t.rescaleY(scaleY2).domain())
+    // let t = d3.event.transform;
+
+    // //console.log("Prima: ", scaleX(x), scaleY(y))
+    // scaleX.domain(t.rescaleX(scaleX2).domain())
+    // scaleY.domain(t.rescaleY(scaleY2).domain())
 }
 
 function nozoom() {
     d3.event.preventDefault();
 }
 
-function dragstarted(d) {
-    //this.parentNode.appendChild(this);
-    view.attr("cursor", "grabbing");
-    d3.select(this).attr("stroke", "black");
-    hero = this.id;
-    hero = hero[hero.length-2] + hero[hero.length-1]
-    //console.log(hero)
-}
+// function dragstarted(d) {
+//     //this.parentNode.appendChild(this);
+//     //view.attr("cursor", "grabbing");
+//     d3.select(this).attr("stroke", "black");
+//     hero = this.id;
+//     hero = hero[hero.length-2] + hero[hero.length-1]
+//     //console.log(hero)
+// }
 
-function dragged(d) {
-    
-    d3.select(this).raise().attr("cx", d3.event.x).attr("cy", d3.event.y);
-    div.transition().duration(100).style("opacity", 0);
-}
+// function dragged(d) {
 
-function dragended(d) {
-    d3.select(this).attr("stroke", null);
-    view.attr("cursor", "grab");
+//     d3.select(this).raise().attr("cx", d3.event.x).attr("cy", d3.event.y);
+//     div.transition().duration(100).style("opacity", 0);
+// }
 
-    console.log("Posizione del personaggio selezionato: ",d3.event.x, d3.event.y)
+// function dragended(d) {
+//     d3.select(this).attr("stroke", null);
+//     view.attr("cursor", "grab");
 
-    checkCharacterMovie();
-}
+//     console.log("Posizione del personaggio selezionato: ",d3.event.x, d3.event.y)
 
-function img_url(id){ return "url(#img" + id + ")";}
+//     checkCharacterMovie();
+// }
 
-function checkCharacterMovie(){
-    if (hero != "null"){
-        if (distanceHeroMovie(dictEdge[hero]) != ""){
-            console.log("personaggio nel film giusto!")
+function img_url(id){ return "url(#img" + id + ")"; }
 
-            let idMovie = distanceHeroMovie(dictEdge[hero]);
-            let movie = d3.select("#"+idMovie)
-            let x = d3.select("#"+hero+"_"+idMovie).attr("cx");
-            let y = d3.select("#"+hero+"_"+idMovie).attr("cy");
-            let parentMovieCod = movie._groups[0][0].parentNode.attributes[2].nodeValue.split("(")[1].split(")")[0]
-            
-            x = parseFloat(x) + parseFloat(parentMovieCod.split(",")[0]);
-            y = parseFloat(y) + parseFloat(parentMovieCod.split(",")[1]);
-            
-            d3.select("#selectHero"+hero).transition().ease(d3.easeSin)
-                .attr("cx", x )
-                .attr("cy", y )
-                .duration(1500).remove()
+function checkCharacterMovie2(idMovie){
+    console.log("Hero: " + hero, "Movie: "+ idMovie)
 
-            d3.select("#"+hero+"_"+idMovie).transition().style("fill",img_url(hero)).duration(2000)
-            
-
+    if (dictEdge[hero].includes(idMovie)){
+        if(hero_movie_left[hero] == undefined){
+            actionHeroCorrect(idMovie);
+        }else if(!hero_movie_left[hero].includes(idMovie)){
+            actionHeroCorrect(idMovie);
         }else{
             d3.select("#selectHero"+hero).raise().transition().ease(d3.easeElastic).duration(1500)
                 .attr("cx", sectionHeroXY[0]).attr("cy", sectionHeroXY[1])
-            console.log("posizione errata!")
+            alert("Personaggio già inserito nel film!")
         }
+    }else{
+        d3.select("#selectHero"+hero).raise().transition().ease(d3.easeElastic).duration(1500)
+            .attr("cx", sectionHeroXY[0]).attr("cy", sectionHeroXY[1])
+        console.log("Posizione errata!")
+        wrongHero();
     }
+
 }
 
-function distanceHeroMovie(movies){
-    console.log(hero, movies)
-    let result = "";
-    let hr = d3.select("#selectHero"+hero)
-    movies.forEach(function(d,i){ 
-        //console.log(d)
-        let movie = d3.select("#"+d);
-        let parentMovieCod = movie._groups[0][0].parentNode.attributes[2].nodeValue.split("(")[1].split(")")[0]
-        let parentMovieWidth = (movie._groups[0][0].parentNode.attributes[0].nodeValue)/2
-        //console.log(parentMovieWidth + parseInt(parentMovieCod.split(",")[0]))
-        let parentMovieHeigth = (movie._groups[0][0].parentNode.attributes[1].nodeValue)/2
-        
-        //console.log(parseInt(parentMovieCod.split(",")[0]))
-        let xMovie = parseInt(parentMovieCod.split(",")[0])
-        let yMovie = parseInt(parentMovieCod.split(",")[1])
-        xMovie = scaleX(xMovie) + scaleX(parentMovieWidth)
-        yMovie = scaleY(yMovie) + scaleY(parentMovieHeigth)
-        console.log("Centro del film: ",xMovie, yMovie)
+function actionHeroCorrect(idMovie){
+    console.log("personaggio nel film giusto!")
 
-        d3.select(".view").append("circle").attr("id","test").attr("r",40).attr("cx", xMovie).attr("cy",yMovie).attr("fill", "orange")
+        // d3.select("#selectHero"+hero).transition().ease(d3.easeLinear)
+        //     .attr("cx", sectionHeroXY[0])
+        //     .attr("cy", sectionHeroXY[1])
+        //     .duration(1500)
+        d3.select("#selectHero"+hero)
+            .attr("cx", sectionHeroXY[0])
+            .attr("cy", sectionHeroXY[1])
 
-        
-        let x = Math.pow((hr.attr("cx") - xMovie),2);
-        let y = Math.pow((hr.attr("cy") - yMovie),2);
-        
-        let distance = Math.sqrt(x + y);
-        let minimo = d3.mean([(movie.attr("rx")), (movie.attr("ry"))])
-        //let minimo = d3.mean([(movie.attr("rx")), (movie.attr("ry"))])
+        d3.select("#"+hero+"_"+idMovie).attr("class","appostHero").style("fill",img_url(hero))
 
-        console.log("Distance: "+ distance, "Minimo: " + minimo, "Movie: " + d);
-        if (distance < minimo)
-            result = d;
-    })
-
-    return result;
+        correctHero(idMovie, hero);
 }
+
+// function distanceHeroMovie(movies){
+//     console.log(hero, movies)
+//     let result = "";
+//     let hr = d3.select("#selectHero"+hero)
+//     movies.forEach(function(d,i){
+//         //console.log(d)
+//         let movie = d3.select("#"+d);
+//         let parentMovieCod = movie._groups[0][0].parentNode.attributes[2].nodeValue.split("(")[1].split(")")[0]
+//         let parentMovieWidth = (movie._groups[0][0].parentNode.attributes[0].nodeValue)/2
+//         //console.log(parentMovieWidth + parseInt(parentMovieCod.split(",")[0]))
+//         let parentMovieHeigth = (movie._groups[0][0].parentNode.attributes[1].nodeValue)/2
+
+//         //console.log(parseInt(parentMovieCod.split(",")[0]))
+//         let xMovie = parseInt(parentMovieCod.split(",")[0])
+//         let yMovie = parseInt(parentMovieCod.split(",")[1])
+//         xMovie = scaleX(xMovie) + scaleX(parentMovieWidth)
+//         yMovie = scaleY(yMovie) + scaleY(parentMovieHeigth)
+//         console.log("Centro del film: ",xMovie, yMovie)
+
+//         //d3.select(".view").append("circle").attr("id","test").attr("r",40).attr("cx", xMovie).attr("cy",yMovie).attr("fill", "orange")
+
+
+//         let x = Math.pow((hr.attr("cx") - xMovie),2);
+//         let y = Math.pow((hr.attr("cy") - yMovie),2);
+
+//         let distance = Math.sqrt(x + y);
+//         let minimo = d3.mean([(movie.attr("rx")), (movie.attr("ry"))])
+//         //let minimo = d3.mean([(movie.attr("rx")), (movie.attr("ry"))])
+
+//         console.log("Distance: "+ distance, "Minimo: " + minimo, "Movie: " + d);
+//         if (distance < minimo)
+//             result = d;
+//     })
+
+//     return result;
+// }
