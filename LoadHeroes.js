@@ -61,7 +61,7 @@ function myFunction(xml) {
 
     };
 
-    console.log("Caricamento dati, finito!");
+    console.log("Data load, ended!");
 
 
     // =================   Creazione dei personaggi nella herolist ===========================
@@ -83,7 +83,7 @@ function myFunction(xml) {
     		.attr("width", (radius*2)+4)
             .attr("height", (radius*2)+4)
             .attr("xlink:href", function(d) {
-                    return "bozza/"+d.Name+".jpg";
+                    return "images/"+d.Name+".jpg";
             })
 
     defs2.selectAll("pattern").data(dictHeroes)
@@ -99,7 +99,7 @@ function myFunction(xml) {
                 .attr("width", (radius*2)+4)
                 .attr("height", (radius*2)+4)
                 .attr("xlink:href", function(d) {
-                        return "bozza/"+d.Name+"-bw.jpg";
+                        return "images/"+d.Name+"-bw.jpg";
                 })
 
     d3.select("#heroList").append("g").selectAll("circle")
@@ -128,9 +128,9 @@ function myFunction(xml) {
                 rect.remove()
             }
             if(calculateMovieLeftHero(d.ID,dictEdge[d.ID].length,hero_movie_left[d.ID]) == 0){
-                alert("Hai finito di inserire il personaggio!")
+                alert("Hero in all films!")
             }else{
-                console.log("Hai selezionato: " + d.Name)
+                console.log("You selected: " + d.Name)
                 d3.select("#world").append("circle")
                     .attr("id", "selectHero"+d.ID)
                     .attr("class", "drag-drop")
@@ -168,7 +168,7 @@ function myFunction(xml) {
     		.attr("width", (radius*2)+4)
             .attr("height", (radius*2)+4)
             .attr("xlink:href", function(d) {
-                    return "bozza/unknown.png";
+                    return "images/unknown.png";
             })
 
         let cod = [40,150];
@@ -331,7 +331,7 @@ function buildHeroFinder(svg,ellipse,x,y,heroID){
 
 function revealHero(heroR, heroID, movieID) {
     //console.log(d3.select(heroR).style("fill"))
-    if(confirm("Vuoi davvero sapere chi è? (costa 200 punti)")){
+    if(confirm("Are you sure you wanna really know who is it? (It costs 200 points)")){
         cheatHero(movieID, heroID);
         d3.select(heroR).attr("class","appostHero").style("fill", img_url(heroID))
     }

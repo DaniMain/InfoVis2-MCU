@@ -111,19 +111,19 @@ function checkCharacterMovie2(idMovie){
         }else{
             d3.select("#selectHero"+hero).raise().transition().ease(d3.easeElastic).duration(1500)
                 .attr("cx", sectionHeroXY[0]).attr("cy", sectionHeroXY[1])
-            alert("Personaggio già inserito nel film!")
+            alert("Hero already in this film!")
         }
     }else{
         d3.select("#selectHero"+hero).raise().transition().ease(d3.easeElastic).duration(1500)
             .attr("cx", sectionHeroXY[0]).attr("cy", sectionHeroXY[1])
-        console.log("Posizione errata!")
+        console.log("Wrong film!")
         wrongHero();
     }
 
 }
 
 function actionHeroCorrect(idMovie){
-    console.log("personaggio nel film giusto!")
+    console.log("Hero in the correct film!")
 
         // d3.select("#selectHero"+hero).transition().ease(d3.easeLinear)
         //     .attr("cx", sectionHeroXY[0])
