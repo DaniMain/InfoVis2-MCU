@@ -46,7 +46,13 @@ function HeroRevealed(score,movieID,heroID){
 function calculateMissingHero(){
     missingHero = d3.selectAll(".missHero")._groups[0].length;
     d3.select('.missingHero').text("Missing Heroes: " + missingHero);
+
+    /* final condition to the end of the game */
+    if(missingHero==0)
+      d3.select("#overlay").style("display",'block');
 }
+
+
 
 function updateHeroMovieLeft(heroID,movieID){
     if(hero_movie_left[heroID] == undefined)
@@ -68,6 +74,7 @@ function updateMovieCompleted(movieID){
     d3.select('.movieCompleted').text("Movies Completed: " + movieC + " / 24")
 }
 
+// ========= widget status game ============
 function radialProgress(selector) {
   const parent = d3.select(selector)
   const size = parent.node().getBoundingClientRect()
