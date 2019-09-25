@@ -1,4 +1,3 @@
-
 var dictMovies = [];
 var dictEdge = {};
 var missHeroes_Movie = {};
@@ -331,8 +330,10 @@ function buildHeroFinder(svg,ellipse,x,y,heroID){
 
 function revealHero(heroR, heroID, movieID) {
     //console.log(d3.select(heroR).style("fill"))
-    if(confirm("Are you sure you wanna really know who is it? (It costs 200 points)")){
-        cheatHero(movieID, heroID);
-        d3.select(heroR).attr("class","appostHero").style("fill", img_url(heroID))
-    }
+    if(d3.select(heroR).attr("class") != "revealHero"){
+	    if(confirm("Are you sure you wanna really know who is it? (It costs 200 points)")){
+	        cheatHero(movieID, heroID);
+	        d3.select(heroR).attr("class","revealHero").style("fill", img_url(heroID))
+	    }
+	}
 }

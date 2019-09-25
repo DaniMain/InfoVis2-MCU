@@ -21,6 +21,8 @@ interact('.dropzone').dropzone({
     },
     ondragenter: function (event) {
       inFilm = true;
+      var dropzoneElement = event.target;
+      dropzoneElement.classList.add('drop-target');
     },
     ondragleave: function (event) {
       inFilm = false;
