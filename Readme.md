@@ -1,4 +1,4 @@
-#Before starting
+# Before starting
 It works only in Mozilla Firefox and not in other browsers (Chrome, Safari, Edge, etc.).
 
 Before starting, you need to open your browser and in about:config select the variable privacy.file_unique_origin and set it false.
@@ -7,7 +7,7 @@ To start the project, it’s necessary open the Control.html file in the browser
 
 NB: the project was implemented on a 2560x1600 screen, so it’s likely that on screens with lower resolution a correct display will not be obtained. In this case we recommend reducing the page zoom to 90%.
 
-#User guide
+# User guide
 The goal of this pleasant game is to insert the heroes of the Marvel Cinematic Universe into each of the numerous films in which it has appeared.
 
 At the beginning of the game the data of the characters and the films will be loaded and automatically the timer will be started (it is possible to pause and reset). At the bottom we have all the information about the game: how many characters are missing to insert [Missing Heroes], how many movies have been completed [Movies Completed], how many errors have been committed by inserting a character in a film in which never appeared [Fails], and finally the user's score is displayed [Score] (an additional bonus is applied to each correct move, in the event of a wrong move this bonus is reset).
