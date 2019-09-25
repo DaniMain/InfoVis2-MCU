@@ -3,7 +3,7 @@ It works only in Mozilla Firefox and not in other browsers (Chrome, Safari, Edge
 
 Before starting, you need to open your browser and in about:config select the variable privacy.file_unique_origin and set it false.
 
-To start the project, it’s necessary open the Control.html file in the browser.
+To start the project, it’s necessary open the index.html file in the browser.
 
 NB: the project was implemented on a 2560x1600 screen, so it’s likely that on screens with lower resolution a correct display will not be obtained. In this case we recommend reducing the page zoom to 90%.
 

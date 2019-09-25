@@ -3,7 +3,7 @@ div {
 }
 
 body {
-  background-image: url("Serio/milky-way-small2.jpg");
+  background-image: url("../media/milky-way-small2.jpg");
   background-position: 4px;
 }
 
@@ -57,12 +57,20 @@ div.target {
   border-style:solid;
   border-width: 3px;
   border-color: red;
+  float:left;
+  width:1260px;
+  height:595px;
 }
 
 div.heroes {
   border-style:solid;
   border-width: 3px;
   border-color: red;
+  overflow:auto;
+  padding-right:2px;
+  float:left;
+  width:120px;
+  height:595px;
 }
 
 div.footer {

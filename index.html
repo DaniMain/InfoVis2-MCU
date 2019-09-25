@@ -8,21 +8,12 @@
         <script src="http://d3js.org/d3.v4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
 
-       <!--<table class="logo">
-            <tr>
-                <td> <img src="bozza/Logo.png" height="100" width="240"></img></td>
-                <td class="logoTitle"> <h1> MARVEL CINEMATIC UNIVERSE </h1> </td>
-            </tr>
-        </table>-->
-
-        <div class="heroes" style="overflow:auto;padding-right:2px;float:left;width:120px;height:595px;">
+        <div class="heroes">
             <h3>Heroes List</h3>
         </div>
 
-        <div class="target" style="float:left;width:1260px;height:595px;"> <!-- rimetti width a 1260, oppure trovare il modo di occupare lo schermo senza andare a capo -->
-            <svg id="world" width="1260" height="595">
-
-            </svg>
+        <div class="target">
+            <svg id="world" width="1260" height="595"></svg>
         </div>
         <div style="clear:both;"></div>
 
@@ -67,12 +58,12 @@
 
                 <td>
                   <div class="playlist" style ="float:right;background-color:black">
-                    <audio id="audio" src="The Avengers - Main Theme Extended.mp3" controls autoplay></audio>
+                    <audio id="audio" src="media/The Avengers - Main Theme Extended.mp3" controls autoplay></audio>
                     <br>
-                    <button type="button" onclick = "play('The Avengers - Main Theme Extended.mp3')">
+                    <button type="button" onclick = "play('media/The Avengers - Main Theme Extended.mp3')">
                         Song 1
                     </button>
-                    <button type="button" onclick = "play('THE AVENGERS_Epic Medley Orchestral Cover.mp3')">
+                    <button type="button" onclick = "play('media/THE AVENGERS_Epic Medley Orchestral Cover.mp3')">
                         Song 2
                     </button>
                   </div>
@@ -80,29 +71,23 @@
               </tr>
             </table>
 
-
           </div>
-          <!-- finestra modale finale -->
-            <div id="overlay">
-                <div class="popup">
-                    <h2>You insert all heroes!</h2>
-                    <div class="pl-left">
-                        <img src="http://giphygifs.s3.amazonaws.com/media/pAUg2l9WEV3QA/giphy.gif">
-                    </div>
-                    <button class="close" title="Chiudere" onclick="document.getElementById('overlay').style.display='none';"></button>
-                </div>
-            </div>
 
+          <div id="overlay">
+              <div class="popup">
+                  <h2>You insert all heroes!</h2>
+                  <div class="pl-left">
+                      <img src="http://giphygifs.s3.amazonaws.com/media/pAUg2l9WEV3QA/giphy.gif">
+                  </div>
+                  <button class="close" title="Chiudere" onclick="document.getElementById('overlay').style.display='none';"></button>
+              </div>
+          </div>
 
         <script src="scripts/LoadHeroes.js"></script>
         <script src="scripts/Universe.js"></script>
         <script src="scripts/Score.js"></script>
         <script src="scripts/detectInOut.js"></script>
         <script src="scripts/chrono.js"></script>
-        <!-- <script type="text/javascript">
-            var delay_popup = 000;
-            setTimeout("document.getElementById('overlay').style.display='block'", delay_popup);
-        </script> -->
 
     </body>
 </html>

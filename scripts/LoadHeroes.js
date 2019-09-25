@@ -8,7 +8,7 @@ xhttp.onreadystatechange = function() {
         myFunction(this);
     }
 };
-xhttp.open("GET", "Marvel - GraphML.xml", true);
+xhttp.open("GET", "media/Marvel - GraphML.xml", true);
 xhttp.send();
 
 function myFunction(xml) {
@@ -82,7 +82,7 @@ function myFunction(xml) {
     		.attr("width", (radius*2)+4)
             .attr("height", (radius*2)+4)
             .attr("xlink:href", function(d) {
-                    return "images/"+d.Name+".jpg";
+                    return "media/"+d.Name+".jpg";
             })
 
     defs2.selectAll("pattern").data(dictHeroes)
@@ -98,7 +98,7 @@ function myFunction(xml) {
                 .attr("width", (radius*2)+4)
                 .attr("height", (radius*2)+4)
                 .attr("xlink:href", function(d) {
-                        return "images/"+d.Name+"-bw.jpg";
+                        return "media/"+d.Name+"-bw.jpg";
                 })
 
     d3.select("#heroList").append("g").selectAll("circle")
@@ -167,7 +167,7 @@ function myFunction(xml) {
     		.attr("width", (radius*2)+4)
             .attr("height", (radius*2)+4)
             .attr("xlink:href", function(d) {
-                    return "images/unknown.png";
+                    return "media/unknown.png";
             })
 
         let cod = [40,150];
