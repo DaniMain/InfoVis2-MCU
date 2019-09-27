@@ -5,6 +5,7 @@ div {
 body {
   background-image: url("../media/milky-way-small2.jpg");
   background-position: 4px;
+  width: 100%;
 }
 
 h1 {
@@ -58,7 +59,7 @@ div.target {
   border-width: 3px;
   border-color: red;
   float:left;
-  width:1260px;
+  width:85%;
   height:595px;
 }
 
@@ -69,13 +70,13 @@ div.heroes {
   overflow:auto;
   padding-right:2px;
   float:left;
-  width:120px;
+  width:10%;
   height:595px;
 }
 
 div.footer {
   margin-top: 7px;
-  width:1395px;
+  width:96%;
   height:130px;
   background-color:transparent;
   border-style:solid;
