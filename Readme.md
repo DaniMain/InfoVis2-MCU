@@ -1,3 +1,6 @@
+# Link to play
+[Click me to play](https://mcu-webgame.herokuapp.com/)
+
 # Before starting
 It works only in Mozilla Firefox and not in other browsers (Chrome, Safari, Edge, etc.).
 
