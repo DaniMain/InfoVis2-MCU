@@ -1,18 +1,28 @@
-[Click me to play game!](https://mcu-webgame.herokuapp.com/)
+How much you know the Marvel Cinematic Universe? Do you want to test your knowledge with this visual game?
+
+If yes, so [click here to play game!](https://mcu-webgame.herokuapp.com/)
 
 # Before starting
-It works only in Mozilla Firefox and not in other browsers (Chrome, Safari, Edge, etc.).
+This game works only in for desktop devices and only in Mozilla Firefox! Other browsers (i.e. Chrome, Safari, Edge, etc.) doesn't support it.
 
-Before starting, you need to open your browser and in about:config select the variable privacy.file_unique_origin and set it false.
+Follow this steps before playing:
+1. Open Firefox browser and type ```about:config``` in search bar;
+2. Search the variable ```privacy.file_unique_origin``` and set it to ```false```;
+3. Read the user guide below.
 
-To start the project, it’s necessary open the index.html file in the browser.
+# How to play
+To start the project, it’s necessary click on the link above or open the index.html file in the browser if you have cloned the repository.
 
-NB: the project was implemented on a 2560x1600 screen, so it’s likely that on screens with lower resolution a correct display will not be obtained. In this case we recommend reducing the page zoom to 90%.
+NB: the project is implemented on a 2560x1600 screen, so it’s likely that on screens with lower resolution a correct display will not be obtained. In this case we recommend reducing the page zoom to 90% or 80%.
 
 # User guide
 The goal of this pleasant game is to insert the heroes of the Marvel Cinematic Universe into each of the numerous films in which it has appeared.
 
-At the beginning of the game the data of the characters and the films will be loaded and automatically the timer will be started (it is possible to pause and reset). At the bottom we have all the information about the game: how many characters are missing to insert [Missing Heroes], how many movies have been completed [Movies Completed], how many errors have been committed by inserting a character in a film in which never appeared [Fails], and finally the user's score is displayed [Score] (an additional bonus is applied to each correct move, in the event of a wrong move this bonus is reset).
+At the beginning of the game the data of the characters and the films will be loaded and automatically the timer will be started (it is possible to pause and reset). At the bottom we have all the information about the game:
+- how many characters are missing to insert [Missing Heroes];
+- how many movies have been completed [Movies Completed];
+- how many errors have been committed by inserting a character in a film in which never appeared [Fails];
+- and finally the user's score is displayed [Score] (an additional bonus is applied to each correct move, in the event of a wrong move this bonus is reset).
 
 In the left section you can scroll through the list of heroes from which they will be selected to be able to insert them into the film. Furthermore, if you stay over the character with the mouse, you can view the name and how many movies must still be inserted.
 
