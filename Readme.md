@@ -7,7 +7,7 @@ This game works only in for desktop devices and only in Mozilla Firefox! Other b
 
 Follow this steps before playing:
 1. Open Firefox browser and type ```about:config``` in search bar;
-2. Search the variable ```privacy.file_unique_origin``` and set it to ```false```;
+2. Search the variable ```security.fileuri.strict_origin_policy``` and set it to ```false``` (if you are using a previous version of Mozilla Firefox search ```privacy.file_unique_origin```);
 3. Read the user guide below.
 
 # How to play
